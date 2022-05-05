@@ -1,0 +1,202 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="content-type" content="text-html; charset=utf-8" />
+  <title>NLP</title>
+  <link rel="stylesheet" href="{% static 'reset.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'style.css' %}" />
+  <script type="text/javascript"src="{% static 'jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'preeti.js' %}"></script>
+</head>
+
+<body>
+  <h1>Nepali Language Processing</h1>
+  <div class="text">
+    <div class="dropdown" style="float:right;">
+      <button class="dropbtn">Input Type</button>
+      <div class="dropdown-content">
+        <a href="{% url 'nepali'%}">Nepali</a>
+        <a href="{% url 'engtonepali' %}">RomanToNepali</a>
+      </div>
+    </div>
+    <form name="nepali" id="f1" onsubmit="return false"> 
+      <input type="text" onkeyup="preeti();" name="unicodebox" id="transliterateTextarea"rows="10" cols="66"
+        class="textarea_unicode" placeholder="Type here"></input> 
+      </form>
+      <br>
+      <h1>Top 5 Predictions</h1>
+      <div id="prediction1" class="text1">जान्छु</div>
+    <div id="prediction2"class="text1">जान्छु</div>
+    <div id="prediction1"class="text1">जान्छु</div>
+    <div id="prediction1"class="text1">जान्छु</div>
+    <div id="prediction1"class="text1">जान्छु</div>
+  </div>
+  <div id="nepali" class="keyboard">
+    <div class="keyboard__row">
+      <div class="key--double" data-key="192">
+        <div>~</div>
+        <div>`</div>
+      </div>
+      <div class="key--double" data-key="49">
+        <div>ञ्</div>
+        <div>ञ</div>
+      </div>
+      <div class="key--double" data-key="50">
+        <div>१</div>
+        <div>ज्ञ</div>
+      </div>
+      <div class="key--double" data-key="51">
+        <div>२</div>
+        <div>घ</div>
+      </div>
+      <div class="key--double" data-key="52">
+        <div>३</div>
+        <div>ङ</div>
+      </div>
+      <div class="key--double" data-key="53">
+        <div>४</div>
+        <div>झ</div>
+      </div>
+      <div class="key--double" data-key="54">
+        <div>५</div>
+        <div>छ</div>
+      </div>
+      <div class="key--double" data-key="55">
+        <div>६</div>
+        <div>ट</div>
+      </div>
+      <div class="key--double" data-key="56">
+        <div>७</div>
+        <div>ठ</div>
+      </div>
+      <div class="key--double" data-key="57">
+        <div>८</div>
+        <div>ड</div>
+      </div>
+      <div class="key--double" data-key="48">
+        <div>९</div>
+        <div>ढ</div>
+      </div>
+      <div class="key--double" data-key="189">
+        <div>०</div>
+        <div>ण</div>
+      </div>
+      <div class="key--double" data-key="187">
+        <div>)</div>
+        <div>(</div>
+      </div>
+      <div class="key--double" data-key="187">
+        <div>ं</div>
+        <div>.</div>
+      </div>
+      <div class="key--bottom-right key--word key--w1" data-key="8">
+        <span>delete</span>
+      </div>
+    </div>
+    <div class="keyboard__row">
+      <div class="key--bottom-left key--word key--w4" data-key="9">
+        <span>Tab</span>
+      </div>
+      <div class="key--letter" data-char="Q">त्र</div>
+      <div class="key--letter" data-char="W">ध</div>
+      <div class="key--letter" data-char="E">भ</div>
+      <div class="key--letter" data-char="R">च</div>
+      <div class="key--letter" data-char="T">त</div>
+      <div class="key--letter" data-char="Y">थ</div>
+      <div class="key--letter" data-char="U">ग</div>
+      <div class="key--letter" data-char="I">ष</div>
+      <div class="key--letter" data-char="O">य</div>
+      <div class="key--letter" data-char="P">उ</div>
+      <div class="key--double" data-key="219" data-char="{[">
+        <div>र्</div>
+        <div>ृ</div>
+      </div>
+      <div class="key--double" data-key="221" data-char="}]">
+        <div>ै</div>
+        <div>े</div>
+      </div>
+      <div class="key--double" data-key="220" data-char="|\">
+        <div>|</div>
+        <div>\</div>
+      </div>
+    </div>
+    <div class="keyboard__row">
+      <div class="key--bottom-left key--word key--w5" data-key="20">
+        <span>caps lock</span>
+      </div>
+      <div class="key--letter" data-char="A">ब</div>
+      <div class="key--letter" data-char="S">क</div>
+      <div class="key--letter" data-char="D">म</div>
+      <div class="key--letter" data-char="F">ा</div>
+      <div class="key--letter" data-char="G">न</div>
+      <div class="key--letter" data-char="H">ज</div>
+      <div class="key--letter" data-char="J">व</div>
+      <div class="key--letter" data-char="K">प</div>
+      <div class="key--letter" data-char="L">ि</div>
+      <div class="key--double" data-key="186">
+        <div>स</div>
+      </div>
+      <div class="key--double" data-key="222">
+        <div>ु</div>
+      </div>
+      <div class="key--bottom-right key--word key--w5" data-key="13">
+        <span>return</span>
+      </div>
+    </div>
+    <div class="keyboard__row">
+      <div class="key--bottom-left key--word key--w6" data-key="16">
+        <span>shift</span>
+      </div>
+      <div class="key--letter" data-char="Z">श</div>
+      <div class="key--letter" data-char="X">ह</div>
+      <div class="key--letter" data-char="C">अ</div>
+      <div class="key--letter" data-char="V">ख</div>
+      <div class="key--letter" data-char="B">द</div>
+      <div class="key--letter" data-char="N">ल</div>
+      <div class="key--letter" data-char="M">फ</div>
+      <div class="key--double" data-key="188">
+        <div>?</div>
+        <div>,</div>
+      </div>
+      <div class="key--double" data-key="190">
+        <div>श्र</div>
+        <div>।</div>
+      </div>
+      <div class="key--double" data-key="191">
+        <div>रू</div>
+        <div>र</div>
+      </div>
+      <div class="key--bottom-right key--word key--w6" data-key="16-R">
+        <span>shift</span>
+      </div>
+    </div>
+    <div class="keyboard__row keyboard__row--h3">
+      <div class="key--bottom-left key--word">
+        <span>fn</span>
+      </div>
+      <div class="key--bottom-left key--word key--w1" data-key="17">
+        <span>Ctrl</span>
+      </div>
+      <div class="key--bottom-left key--word key--w1" data-key="18">
+        <span>⊞</span>
+      </div>
+      <div class="key--bottom-right key--word key--w3" data-key="91">
+        <span>Alt</span>
+      </div>
+      <div class="key--double key--right key--space" data-key="32" data-char=" ">
+        &nbsp;
+      </div>
+      <div class="key--bottom-left key--word key--w3" data-key="93-R">
+        <span>Alt</span>
+      </div>
+      <div class="key--bottom-left key--word key--w1" data-key="18-R">
+        <span>Ctrl</span>
+      </div>
+    </div>
+  </div>
+  <!-- partial -->
+</body>
+<script src="{% static 'script.js' %}"></script>
+</html>
