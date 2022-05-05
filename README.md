@@ -7,7 +7,7 @@
 
 
 # Install the requirements
-`pip3 install -r requirements.txt`
+`pip3 install -r requirement.txt`
 
 # And finally, Run the server using
 `python manage.py runserver`
