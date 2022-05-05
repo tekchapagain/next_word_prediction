@@ -2,8 +2,8 @@
 
 
 # Create a virtualenv and Activate it
-`virtualenv -v venv
-.\venv\Scripts\activate`
+`virtualenv -v venv`
+`.\venv\Scripts\activate`
 
 
 # Install the requirements
