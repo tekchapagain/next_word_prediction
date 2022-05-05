@@ -95,11 +95,15 @@ $(document).ready(function() {
       var csrftoken = getCookie('csrftoken');
       $.ajax("predicted/",{
         method: "GET",
+        cache: "false",
         headers: {'X-CSRFToken': csrftoken},
         mode: 'same-origin',
       success: function(res){
-        document.getElementById('prediction1').innerHTML=res[0]['prediction']
-        document.getElementById('prediction2').innerHTML=res[0]['prediction']},
+        document.getElementById('prediction1').innerHTML=res[4]['prediction']
+        document.getElementById('prediction2').innerHTML=res[3]['prediction']
+        document.getElementById('prediction3').innerHTML=res[2]['prediction']
+        document.getElementById('prediction4').innerHTML=res[1]['prediction']
+        document.getElementById('prediction5').innerHTML=res[0]['prediction']},
         crossDomain: true,
         contentType: "application/json; charset=utf-8",
         dataType: "json"
@@ -107,3 +111,18 @@ $(document).ready(function() {
 
   });
 });
+
+const textarea = document.getElementById('transliterateTextarea');
+
+
+function reply_click(){
+    const btn = document.getElementById(event.srcElement.id);
+    btn.addEventListener('click', function handleClick() {
+            const text = document.getElementById(event.srcElement.id).innerHTML;
+      
+      if (!textarea.value.includes(text)) {
+        textarea.value += text;
+      }
+    });
+
+}
