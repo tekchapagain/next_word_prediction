@@ -16,7 +16,7 @@ from .test import Message, Predict
 def listmessage(request):
     query = request.GET.get('q','')
     request.session['text'] = query
-    message_obj = Message(query,'hello')
+    message_obj = Message(query,'content')
     serializer_class = MessageSerializer(message_obj)
     return Response(serializer_class.data)
 

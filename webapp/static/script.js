@@ -71,6 +71,7 @@ function getCookie(name) {
 
   $(document).ready(function() {
       $("#f1").submit(function() {
+        event.preventDefault();
         var csrftoken = getCookie('csrftoken');
         $.ajax("api/?q="+document.getElementById('transliterateTextarea').value,{
           method: "POST",
@@ -90,6 +91,7 @@ function getCookie(name) {
 
 $(document).ready(function() {
     $("#f1").submit(function() {
+        event.preventDefault();
       var csrftoken = getCookie('csrftoken');
       $.ajax("predicted/",{
         method: "GET",

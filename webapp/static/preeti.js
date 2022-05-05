@@ -4,7 +4,7 @@ var nameInput = document.getElementsByClassName('textarea_unicode');
 $(document).ready(function() {
     $(document).keydown(function(e) {
     if (e.keyCode == '32') {
-    console.log(nameInput.unicodebox.value);    
+        console.log(nameInput.unicodebox.value);    
     }
 });
 });
