@@ -14,8 +14,17 @@ from transformers import AutoTokenizer, AutoModelForMaskedLM, pipeline
 from typing import List
 import time
 
-tokenizer = AutoTokenizer.from_pretrained("Sakonii/distilbert-base-nepali")
-model = AutoModelForMaskedLM.from_pretrained("Sakonii/distilbert-base-nepali")
+import os
+import pprint
+
+tokenizer = AutoTokenizer.from_pretrained(
+    "/home/suyog/nepali-language-model/NepaliMaskedLM", use_auth_token=True
+)
+
+model = AutoModelForMaskedLM.from_pretrained(
+    "/home/suyog/nepali-language-model/NepaliMaskedLM", use_auth_token=True
+)
+
 unmasker = pipeline("fill-mask", model=model, tokenizer=tokenizer)
 
 
@@ -30,13 +39,12 @@ def listmessage(request):
 
 
 @api_view(["GET", "POST"])
-# @permission_classes([permissions.IsAuthenticated])
 def prediction(request):
     if request.method == "GET":
-        input_text = request.session.get("text", "")
+        input_text: str = request.session.get("text", "")
         if not input_text:
             raise ValueError("No input text")
-        masked_text = " ".join(input_text.split(" ")) + " <mask>"
+        masked_text: str = f"{input_text.rstrip()} <mask>"
         predictions = unmasker([masked_text], top_k=20)
         Prediction.objects.all().delete()
         filters = ["!!!", "...", ".", "..", "!!", "!", "....", "....."]
@@ -48,7 +56,7 @@ def prediction(request):
             Prediction(prediction=pred["token_str"])
             for pred in predictions_filtered[:5]
         ]
-        print(predictions_filtered)
+        pprint.pprint(predictions_filtered[:5])
 
         snippets = obj_list[::-1]
         serializer = PredictionSerializer(snippets, many=True)
